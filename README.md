@@ -1,13 +1,17 @@
 **Project Overview:**
 This Project performs end-toend analysis of e-commerce sales data using Excel, SQL, and Power BI.
 The dataset consists of two analytical sheets:
+
 **1. Product-Level Data**
+
 **2. Monthly Sales Data**
 
 The goal of this project is to evaluate product performance, sales structure, discount impact, return behaviour, and monthly revenue trends.
 
 **Dataset Description:**
+
 **1. Product Sheet Columns**
+
 Product Type
 Net Quantity
 Gross Sales
@@ -23,6 +27,7 @@ Transaction Type
 4. Quantity and Sales analysis
 
 **Key KPIs**
+
 Gross Sales
 Net Sales
 Total Discounts
@@ -30,6 +35,7 @@ Total Returns
 Total Quantity
 
 **2. Monthly Sales Sheet Columns:**
+
 Month
 Year
 Total Orders
@@ -40,19 +46,23 @@ Shipping
 Total Sales
 
 **Monthly Analysis Performed**
+
 1. Monthly sales trend year on year basis
 2. Total profit by month
 3. Total orders and sales by month
 
 **Key KPIs**
+
 Total Sales
 Total Profit
 Total Orders
 Total Discounts
 Profit Margin %
 
-**Tools Used**
+**Tools Used:**
+
 **Excel**
+
 1. Data Cleaning
 2. Removing inconsistencies
 3. Formatting and validation
@@ -60,6 +70,7 @@ Profit Margin %
 5. Preparing cleaned dataset
 
 **SQL**
+
 1. Aggregation using GROUP BY
 2. Monthly revenue calculation
 3. Product ranking queries
@@ -67,6 +78,7 @@ Profit Margin %
 5. Return rate computation
 
 **Power BI**
+
 1. Interactive KPI dashboard
 2. Product performance visualization
 3. Monthly sales trend charts
@@ -74,6 +86,7 @@ Profit Margin %
 5. Profit Proxy trend tracking
 
 **Key Business Insights:**
+
 1. Identified top-performing product categories based on Total Net Sales
 2. Analyzed discount impact on revenue
 3. Evaluated return contribution to revenue reduction
@@ -81,30 +94,34 @@ Profit Margin %
 5. Tracked Profit Proxy trends for performance monitoring
 
 **Project Structure:**
+
 E-Commerce-Sales-Analytics
- data
-  business.retailsales.csv
-  business.retailsales2 cleaned.csv
+ 
+ data:
+  business.retailsales.csv,
+  business.retailsales2 cleaned.csv,
   business.retailsales2.csv
 
- excel
-  business.retailsales cleaned.csv
+ excel:
+  business.retailsales cleaned.csv,
   business.retailsales2 cleaned.csv
   
- sql
-  monthly_analysis_queries.sql
+ sql:
+  monthly_analysis_queries.sql,
   product_analysis_queries
   
- powerbi
+ powerbi:
   E-commerce sales analysis.pbix
 
 **Project Workflow:**
+
 1. Data Cleaning in Excel
 2. SQL-Based Aggregation and Business Analysis
 3. Dashboard Development in Power BI
 4. Insight Extraction and Documentation
 
 **Conclusion:**
+
 This project demonstrates structured end-to-end data analysis by transforming raw e-commerce sales data into actionable business insights using Excel, SQL, and Pwer BI.
 
 It highlights the ability to:
