@@ -83,12 +83,20 @@ Profit Margin %
 **Project Structure:**
 E-Commerce-Sales-Analytics
  data
+  business.retailsales.csv
+  business.retailsales2 cleaned.csv
+  business.retailsales2.csv
 
  excel
-
+  business.retailsales cleaned.csv
+  business.retailsales2 cleaned.csv
+  
  sql
-
+  monthly_analysis_queries.sql
+  product_analysis_queries
+  
  powerbi
+  E-commerce sales analysis.pbix
 
 **Project Workflow:**
 1. Data Cleaning in Excel
