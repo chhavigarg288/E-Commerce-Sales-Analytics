@@ -1,0 +1,136 @@
+-- Use the database to analysis sales
+USE e_commerce_sales_analysis;
+-- Create a table on the database i.e monthly Sales
+CREATE TABLE monthly_sales(
+month VARCHAR(100),
+year INT,
+total_orders DECIMAL(12,2),
+gross_sales DECIMAL(12,2),
+discounts DECIMAL(12,2),
+returns DECIMAL(12,2),
+net_sales DECIMAL(12,2),
+shipping DECIMAL(12,2),
+total_sales DECIMAL(12,2),
+profit_proxy DECIMAL(12,2)
+);
+
+-- Ques1: What are the highest sales in a month?
+SELECT month, year, total_sales 
+FROM monthly_sales
+ORDER BY total_sales DESC;
+
+-- Ques2: What are the highest profit month?
+SELECT month, year, profit_proxy 
+FROM monthly_sales
+ORDER BY profit_proxy  DESC;
+
+-- Ques3: Which Year have record the highest total profit
+SELECT  year, SUM(profit_proxy) AS total_profit
+FROM monthly_sales
+GROUP BY year
+ORDER BY total_profit  DESC;
+
+-- Ques4 Which month have highest_returns
+SELECT 
+	month,
+    COUNT(*) AS return_transactions,
+	SUM(returns) AS total_returns
+FROM monthly_sales
+WHERE returns != 0
+GROUP BY month
+ORDER BY return_transactions DESC;
+
+-- Ques5: Do discount increase sales?
+SELECT 
+	AVG(discounts) AS avg_discounts,
+    AVG(total_sales) AS avg_sales
+FROM monthly_sales;
+SELECT * FROM monthly_sales;
+
+-- Ques6: What is month-on-month sales growth?
+SELECT
+	c.year,
+    c.month,
+    c.total_sales AS current_month_sales,
+    p.total_sales AS previous_month_sales,
+    (c.total_sales - p.total_sales) AS sales_growth
+FROM monthly_sales c
+JOIN monthly_sales p
+ON c.year = p.year
+AND MONTH(STR_TO_DATE(c.month, '%M')) =
+	MONTH(STR_TO_DATE(c.month, '%M')) +1;
+  
+-- Ques7: Same Month comparision across years(YoY Growth)?
+SELECT
+	c.month,
+    c.year,
+    c.total_sales AS current_year_sales,
+    p.total_sales AS previous_year_sales,
+    (c.total_sales - p.total_sales) AS yoy_growth
+FROM monthly_sales c
+JOIN monthly_sales p
+ON c.month = p.month
+AND c.year = p.year + 1;
+
+-- Ques8: Which month performed better then their previous month?
+SELECT *
+FROM (
+	SELECT
+		year,
+        month,
+        total_sales,
+        LAG(total_sales) OVER(
+			ORDER BY year,
+			MONTH(STR_TO_DATE(month, '%M'))
+        ) AS last_month_sales
+	FROM monthly_sales
+) t
+WHERE total_sales > last_month_sales;
+
+-- Ques9: Profit Drop Detection
+SELECT
+	year,
+    month,
+    profit_proxy,
+    LAG(profit_proxy) OVER (
+		ORDER BY year,
+        MONTH(STR_TO_DATE(month, '%M'))
+	) AS previous_profit,
+    profit_proxy -
+    LAG(profit_proxy) OVER(
+		ORDER BY year,
+        MONTH(STR_TO_DATE(month, '%M'))
+	) AS profit_change
+FROM monthly_sales;
+
+-- Ques10: Best performing month within each year
+SELECT
+	a.year, a.month, a.total_sales
+FROM monthly_sales a
+LEFT JOIN monthly_sales b
+ON a.year = b.year
+AND a.total_sales < b.total_sales
+WHERE b.total_sales IS NULL;
+
+-- Ques11: What is the month on month growth percentage?
+SELECT
+	year,
+    month,
+    total_sales,
+    LAG(total_sales) OVER(
+		ORDER BY year,
+        MONTH(STR_TO_DATE(month, '%M'))
+	) AS last_month_sales,
+    ROUND(
+		(total_sales - 
+         LAG(total_sales) OVER(
+			ORDER BY year,
+			MONTH(STR_TO_DATE(month, '%M'))
+         )
+        ) /
+		LAG(total_sales) OVER(
+			ORDER BY year,
+			MONTH(STR_TO_DATE(month, '%M'))
+        ) * 100, 2
+	) AS mom_growth_percent
+FROM monthly_sales;
