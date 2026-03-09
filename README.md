@@ -129,3 +129,13 @@ It highlights the ability to:
 2. Perform product-level and time-series analysis
 3. Build KPI-driven dashboards
 4. Translate data into business insights
+
+**Author**
+
+**Chhavi Garg**
+
+Aspiring Data Analyst with interests in:
+1. Data Analysis
+2. Business Intelligence
+3. Data Visualization
+4. Performance Marketing Analytics
