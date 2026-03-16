@@ -194,6 +194,9 @@ These insights help businesses identify **high-performing products and revenue r
     Business insights derived from analysis
 
 **Project Structure**
+
+
+```
 E-Commerce-Sales-Analytics
 │
 ├── data
@@ -210,9 +213,12 @@ E-Commerce-Sales-Analytics
 │   └── product_analysis_queries
 │
 ├── powerbi
-│   └── E-commerce sales analysis.pbix
+|   ├── E-commerce sales analysis.pbix 
+│   ├── monthly_sales_analytics_dashboard.png
+│   └── product_sales_analytics_dashboard.png
 │
 └── README.md
+```
 
 
 **Conclusion**
