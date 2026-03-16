@@ -59,7 +59,6 @@ JOIN monthly_sales p
 ON c.year = p.year
 AND MONTH(STR_TO_DATE(c.month, '%M')) =
 	MONTH(STR_TO_DATE(c.month, '%M')) +1;
-  
 -- Ques7: Same Month comparision across years(YoY Growth)?
 SELECT
 	c.month,
